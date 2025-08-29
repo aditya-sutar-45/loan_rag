@@ -78,8 +78,16 @@ def invoke_llm(question):
     # Update history
     chat_history.extend([
         HumanMessage(content=question),
-        AIMessage(content=response["answer"])
+        AIMessage(content=response["answer"])   
     ])
+
+    safe_response = {
+        "question": question,
+        "context": [doc.page_content for doc in response.get("context", [])]
+                    if isinstance(response.get("context", []), list)
+                    else str(response.get("context", "")),
+        "answer": response.get("answer", "")
+    }
     
-    return response
+    return response,safe_response
 
