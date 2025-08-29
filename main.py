@@ -18,10 +18,8 @@ def ask_question():
 
         question = data["question"]
 
-        # unpack both versions
         raw_response, safe_response = invoke_llm(question)
 
-        # only return the JSON-safe one
         return jsonify(safe_response)
 
     except Exception as e:
