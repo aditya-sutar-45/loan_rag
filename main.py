@@ -10,6 +10,9 @@ CORS(app)
 load_dotenv()
 init_rag(db_path="./data/db")
 
+# a, b = invoke_llm("hello sir, what are you?")
+# print(b)
+
 
 @app.route("/ask", methods=["POST"])
 def ask_question():

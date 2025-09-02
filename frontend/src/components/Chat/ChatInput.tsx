@@ -1,4 +1,4 @@
-import { Send } from "lucide-react";
+import { Loader2Icon, Send } from "lucide-react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { useState } from "react";
@@ -55,7 +55,7 @@ function ChatInput({ addMessage }: AddMessageProp) {
         onClick={handleSubmit}
         disabled={isLoading}
       >
-        <Send />
+        {isLoading ? <Loader2Icon className="animate-spin" /> : <Send />}
       </Button>
     </div>
   );

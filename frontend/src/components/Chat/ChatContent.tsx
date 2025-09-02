@@ -17,6 +17,7 @@ function ChatContent({
               ? (msg as UserQuerey).question
               : (msg as LLM_Response).answer
           }
+          context={msg.sender === "LLM" ? (msg as LLM_Response).context : ""}
         />
       ))}
     </div>

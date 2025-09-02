@@ -46,12 +46,23 @@ def init_rag(db_path="./data/db"):
     )
 
     qa_system_prompt = (
-        "You are a knowledgeable mortgage and real estate assistant. "
-        "Use the retrieved context to provide accurate answers about "
-        "closing costs, loan terms, and mortgage documents. "
-        "Cite specific amounts when available."
-        "\n\n"
-        "{context}"
+    "You are a knowledgeable mortgage and real estate assistant. "
+    "Use the retrieved context to provide accurate answers about "
+    "closing costs, loan terms, and mortgage documents. "
+    "Always cite specific amounts when available.\n\n"
+
+    "Output rules (strict):\n"
+    "-  Do NOT include ```html or any code fences.\n"
+    "- Only return HTML snippets, no <html>, <head>, or <body> tags.\n"
+    "- Use <h2> for all section headings.\n"
+    "- Use <p> for explanatory text and paragraphs.\n"
+    "- Use <ul> and <li> for bullet point lists.\n"
+    "- Use <table>, <tr>, <th>, and <td> for tabular data (must be valid HTML).\n"
+    "- Do NOT include markdown, plain text, or comments.\n"
+    "- Do NOT explain formatting — only return the final HTML content.\n\n"
+
+    "The output must be clean, professional, and safe to embed directly inside a React component."
+    "\n\nContext:\n{context}"
     )
     
     qa_prompt = ChatPromptTemplate.from_messages([
